@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Pinos, Zacatecas</title>
+    
+    <!-- Enlace a CSS de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Mapa de Ubicaciones en Pinos, Zacatecas</h2>
+    <div id="map"></div>
+
+    <!-- Script de Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // 1. Inicializar el mapa
+    var map = L.map('map').setView([22.2965, -101.5750], 11); 
+
+    // 2. Añadir capa de mapa
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // 3. Definición de ubicaciones (AQUÍ AGREGAMOS LA RUTA DE LA IMAGEN)
+    var ubicaciones = [
+        {
+            nombre: "Cabecera Municipal de Pinos",
+            coords: [22.2965, -101.5750],
+            info: "Pueblo Mágico de Pinos",
+            imagen: "pinos.jpg" // <--- Cambia por tu ruta
+        },
+        {
+            nombre: "Jaltomate",
+            coords: [22.1650, -101.7805],
+            info: "Localidad de Jaltomate, Pinos",
+            imagen: "jaltomate.jpeg"
+        },
+        {
+            nombre: "San Martín",
+            coords: [22.2242, -101.3750],
+            info: "Localidad de San Martín",
+            imagen: "sanmartin.jpeg"
+        },
+        {
+            nombre: "El Cerrito",
+            coords: [21.9890, -101.4270],
+            info: "Localidad del Cerrito, Pinos",
+            imagen: "elcerrito.jpeg"
+        }
+    ];
+
+    // 4. Ciclo para agregar marcadores
+    ubicaciones.forEach(function(lugar) {
+        
+        // Creamos el contenido del globo (Popup) usando HTML
+        // Usamos `${lugar.imagen}` para que JavaScript tome la foto de la lista de arriba
+        var contenido = `
+            <div style="text-align:center;">
+                <b>${lugar.nombre}</b><br>
+                ${lugar.info}<br>
+                <img src="${lugar.imagen}" alt="Foto" style="width:100%; margin-top:10px; border-radius:5px;">
+            </div>
+        `;
+
+        // Añadimos el marcador al mapa y le pegamos el contenido
+        L.marker(lugar.coords)
+            .addTo(map)
+            .bindPopup(contenido); // <--- Aquí es donde se "activa" la imagen al clic
+    });
+</script>
+
+</body>
+</html>
