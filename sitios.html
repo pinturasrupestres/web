@@ -1,0 +1,738 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte Rupestre - Exploración</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: #f4f1ea; color: #333; }
+
+        /* Menú Lateral */
+        nav {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c1e16;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+
+        nav h2 { text-align: center; margin-bottom: 30px; color: #d4a373; }
+
+        nav a {
+            display: block;
+            padding: 15px 25px;
+            color: #f0e6d2;
+            text-decoration: none;
+            transition: 0.3s;
+            border-bottom: 1px solid #3d2b1f;
+        }
+
+        nav a:hover { background-color: #de5119; color: #2c1e16; }
+
+        /* Contenedor Principal */
+        main {
+            margin-left: 250px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        section { display: none; margin-bottom: 50px; line-height: 1.6; }
+        section:target { display: block; } /* Muestra la sección según el ID en la URL */
+        #inicio { display: block; } /* Mostrar inicio por defecto */
+
+        h1 { color: #5d4037; border-bottom: 2px solid #d4a373; padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { margin-top: 20px; color: #8d6e63; }
+
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
+        
+        /* Simulación de Mapa */
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #e0d5c1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #8d6e63;
+            border-radius: 10px;
+        }
+
+        .grid-sitios { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .sitio-item { background: #8d6e63; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+        .sitio-item:hover { background-color: #de5119; color: #2c1e16; }
+
+        /* Estilo de la imagen principal */
+        .imagen-sierra {
+            width: 300px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 3s;
+        }
+        .imagen-sierra:hover {
+            opacity: 0.5;
+        }
+
+        /* Estilo del fondo de la ventana (Modal) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .modal-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .moda2 {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .moda2-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+         .moda3 {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .moda3-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+         .moda4 {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .moda4-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+         .moda5 {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .moda5-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+         
+
+         .moda6 {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Fondo oscuro transparente */
+        }
+
+        /* Contenedor de la ventanita */
+        .moda6-contenido {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+      
+        .cerrar {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+h2 { color: #2e7d32; }
+        .info-item { margin: 10px 0; font-family: sans-serif; }
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex, left;
+            justify-content: center;
+            padding: 0px;
+            background-color: #f4f4f9;
+            
+        }
+
+        .card {
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #ddd;
+            gap: 1%;
+            margin: 0;
+            
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .icon {
+            margin-right: 8px;
+            fill: #e74c3c; /* Color rojo para el icono */
+        }
+
+        .title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        .label {
+            font-weight: 700;
+            color: #333;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+.fila-tarjetas {
+            display: flex;
+            flex-direction: row; /* Las pone en fila */
+         /* Izquierda, Centro y Derecha */
+            align-items: flex-start; /* Alineación vertical arriba */
+            gap: 15px; /* Espacio opcional entre tarjetas */
+            padding: 10px;
+            background-color: #f0f0f0;
+            
+        }
+    </style>
+    
+</head>
+<body>
+
+    <nav>
+        <h2>Menú</h2>
+        <a href="index.html">Inicio</a>
+        <a href="historia.html">Historia</a>
+        <a href="mapa.html">Mapa (Pinos, Zacatecas)</a>
+        <a href="sitios.html">Sitios Arqueológicos</a>
+        <a href="pigmentos.html">Pigmentos</a>
+         <a href="pinturas.html">Pinturas Rupestres (Experimentales)</a>
+      
+    </nav>
+
+    <main>
+            <h1>Sitios arqueologicos destacados en nuestro país</h1>
+    
+                     
+<div class="fila-tarjetas">
+    
+    <!-- Tarjeta a la Izquierda -->
+    <div class="card">
+        <!-- Imagen de la Sierra -->
+    <img src="sanc1.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Sierra San Carlos</h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+            Tamaulipas, México (Municipios de San Carlos, San Nicolás y Cruillas).
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+            
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModal()">Ver mas</div>
+    
+
+    <div id="miModal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <h2>Sierra San Carlos</h2>
+            <div class="info-item"><strong>Definicion:</strong> La Sierra de San Carlos (también conocida como Sierra de Cruillas) es uno de los tesoros geográficos 
+                y ecológicos más fascinantes de México, ubicada en el estado de Tamaulipas. </div>
+            <div class="info-item"><strong>Ubicación:</strong> Tamaulipas, México.</div>
+            <div class="info-item"><strong>Estado:</strong> En riesgo (Sujeta a conservación).</div>
+             <div class="info-item"><strong>Estado:</strong> Sujeta a conservación ecológica debido a su biodiversidad única y especies endémicas.</div>
+            <p style="margin-top: 5px;"></p>
+            <div class="info-item"><strong>Condición:</strong> Bosque de encino-pino con biodiversidad endémica.</div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModal() {
+            document.getElementById("miModal").style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById("miModal").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let modal = document.getElementById("miModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+    </div>
+
+    <!-- Tarjeta al Centro -->
+    <div class="card">
+       <!-- Imagen de la Sierra -->
+    <img src="pinta1.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Cueva la pintada</h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+          Sierra de San Francisco, Baja California Sur, México.
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+            
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModa2()">Ver mas</div>
+    
+
+    <div id="miModa2" class="moda2">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModa2()">&times;</span>
+            <h2>Cueva la pintada</h2>
+            <div class="info-item"><strong>Definicion:</strong> Es un abrigo rocoso de dimensiones monumentales que alberga uno de los conjuntos de arte rupestre 
+                más extensos y complejos del mundo. Pertenece al estilo "Gran Mural", caracterizado por figuras humanas (monos) y animales. </div>
+            <div class="info-item"><strong>Ubicación:</strong> Sierra de San Francisco, Baja California Sur, México.</div>
+            <div class="info-item"><strong>Estado:</strong> En excelentes condiciones</div>
+            <div class="info-item"><strong>Condición:</strong> En las partes altas predominan especies adaptadas a la escasez de agua, como diversas
+                 variedades de cactus, cactáceas (como cardones), ocotillos y arbustos xerófilos.</div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModa2() {
+            document.getElementById("miModa2").style.display = "block";
+        }
+
+        function cerrarModa2() {
+            document.getElementById("miModa2").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let moda2 = document.getElementById("miModa2");
+            if (event.target == moda2) {
+                moda2.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+    </div>
+
+    <!-- Tarjeta a la Derecha -->
+    <div class="card">
+      <!-- Imagen de la Sierra -->
+    <img src="peñas1.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Arroyo seco </h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+               Sierra Gorda, Victoria,
+               Guanajuato, México.
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+            
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModa3()">Ver mas</div>
+    
+
+    <div id="miModa3" class="moda3">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModa3()">&times;</span>
+            <h2>Arroyo seco</h2>
+            <div class="info-item"><strong>Definicion:</strong> Es un sitio que resguarda 46 conjuntos pictóricos con cientos de motivos gráficos.
+                 Estas pinturas fueron realizadas por grupos de cazadores-recolectores a lo largo de miles de años. </div>
+            <div class="info-item"><strong>Ubicación:</strong> Sierra Gorda, Victoria,
+                 Guanajuato, México.</div>
+            <div class="info-item"><strong>Estado:</strong> Naturalmente vulnerable</div>
+            <div class="info-item"><strong>Condición:</strong> La vegetación original es el pastizal pampeano, caracterizado por diversas especies de gramíneas. </div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModa3() {
+            document.getElementById("miModa3").style.display = "block";
+        }
+
+        function cerrarModa3() {
+            document.getElementById("miModa3").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let moda3 = document.getElementById("miModa3");
+            if (event.target == moda3) {
+                moda3.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+    </div>
+
+   
+    
+</div>
+    
+<div class="fila-tarjetas">
+    
+    <!-- Tarjeta a la Izquierda -->
+    <div class="card">
+        <!-- Imagen de la Sierra -->
+    <img src="mitla1.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Cuevas de Mitla</h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+            Valles Centrales cerca de Mitla,
+             Oaxaca, México. 
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+           
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModa4()">Ver mas</div>
+    
+
+    <div id="miModa4" class="moda4">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModa4()">&times;</span>
+            <h2>Cuevas de Mitla</h2>
+            <div class="info-item"><strong>Definicion:</strong> Es un abrigo rocoso de dimensiones monumentales que alberga uno de los conjuntos de arte rupestre más extensos
+             y complejos del mundo. Pertenece al estilo "Gran Mural", caracterizado por figuras humanas (monos) y animales. </div>
+            <div class="info-item"><strong>Ubicación:</strong> Valles Centrales cerca de Mitla, Oaxaca, México. </div>
+            <div class="info-item"><strong>Estado:</strong> En buenas condiciones.</div>
+            <div class="info-item"><strong></strong> Estable, pero con riesgos de vandalismo y erosión.</div>
+            <div class="info-item"><strong>Condición:</strong> Presenta un ecosistema de matorral xerófilo y selva baja caducifolia, típico de zonas áridas con marcadas temporadas de lluvia y sequía.</div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModa4() {
+            document.getElementById("miModa4").style.display = "block";
+        }
+
+        function cerrarModa4() {
+            document.getElementById("miModa4").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let moda4 = document.getElementById("miModa4");
+            if (event.target == moda4) {
+                moda4.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+
+    </div>
+    <div class="card">
+      <!-- Imagen de la Sierra -->
+    <img src="ratones1.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Cueva del raton </h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+           Sierra de San Francisco, Mulegé, 
+           Baja California Sur, México.
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+            
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModa5()">Ver mas</div>
+    
+
+    <div id="miModa5" class="moda5">
+        <div class="moda5-contenido">
+            <span class="cerrar" onclick="cerrarModa5()">&times;</span>
+            <h2>Cueva del raton</h2>
+            <div class="info-item"><strong>Definicion:</strong> Es uno de los sitios más emblemáticos de la Sierra de San Francisco, en el estado de Baja California Sur. Es mundialmente conocida 
+                por resguardar un conjunto excepcional de pinturas rupestres pertenecientes a la denominada "Tradición de Gran Mural". </div>
+            <div class="info-item"><strong>Ubicación:</strong> Sierra de San Francisco, Mulegé, 
+                Baja California Sur, México.</div>
+            <div class="info-item"><strong>Estado:</strong> Excelentes condiciones</div>
+            <div class="info-item"><strong></strong> Excelente conservación; protegida por el INAH; acceso restringido.</div>
+            <div class="info-item"><strong>Condición:</strong>Matorral xerófilo (cardones, pitayas, torotes, palo blanco).</div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModa5() {
+            document.getElementById("miModa5").style.display = "block";
+        }
+
+        function cerrarModa5() {
+            document.getElementById("miModa5").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let moda5 = document.getElementById("miModa5");
+            if (event.target == moda5) {
+                moda5.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+      
+</div>
+    
+    <div class="card">
+      <!-- Imagen de la Sierra -->
+    <img src="boca.jpg" alt="Sierra San Carlos">
+    
+    <div class="content">
+        <div class="location-header">
+            <!-- Icono de ubicación SVG -->
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <h2 class="title">Boca de Potrerillos </h2>
+        </div>
+
+        <div class="info-item">
+            <span class="label">Ubicación:</span>
+            Entre cerros El Antrisco y La Zorra, 
+            Mina, Nuevo León, México. 
+        </div>
+
+        <div class="info-item">
+            <span class="label">Estado de Conservación:</span>
+            <span class="status-badge">Área Natural Protegida</span>
+            
+        </div>
+
+        <div class="grid-sitios">
+                <div class="sitio-item" onclick="abrirModa6()">Ver mas</div>
+    
+
+    <div id="miModa6" class="moda6">
+        <div class="moda6-contenido">
+            <span class="cerrar" onclick="cerrarModa6()">&times;</span>
+            <h2>Boca de Potrerillos</h2>
+            <div class="info-item"><strong>Definicion:</strong> Es uno de los sitios arqueológicos más importantes del noreste de México. Este sitio se caracteriza principalmente 
+                por petroglifos (grabados en piedra) en lugar de pinturas rupestres.</div>
+            <div class="info-item"><strong>Ubicación:</strong>Mina, Nuevo León México. </div>
+            <div class="info-item"><strong>Estado:</strong> Buenas condiciones</div>
+            <div class="info-item"><strong>Condición:</strong> El área está dominada por vegetación adaptada a la aridez. Predominan los nopales, 
+                lechuguillas, mezquites, biznagas y diversas variedades de cactáceas.</div>
+        </div>
+    </div>
+   
+    <script>
+        function abrirModa6() {
+            document.getElementById("miModa6").style.display = "block";
+        }
+
+        function cerrarModa6() {
+            document.getElementById("miModa6").style.display = "none";
+        }
+
+        // Cerrar si el usuario hace clic fuera de la ventanita
+        window.onclick = function(event) {
+            let moda6 = document.getElementById("miModa6");
+            if (event.target == moda6) {
+                moda6.style.display = "none";
+            }
+        }
+        
+
+    </script>
+    </div> 
+</div>
+    </div>
+     
+       
+</body>
+</html>
