@@ -1,0 +1,118 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte Rupestre - Exploración</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { display: flex; background-color: #f4f1ea; color: #333; }
+
+        /* Menú Lateral */
+        nav {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c1e16;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+        }
+
+        nav h2 { text-align: center; margin-bottom: 30px; color: #d4a373; }
+
+        nav a {
+            display: block;
+            padding: 15px 25px;
+            color: #f0e6d2;
+            text-decoration: none;
+            transition: 0.3s;
+            border-bottom: 1px solid #3d2b1f;
+        }
+
+        nav a:hover { background-color: #de5119; color: #2c1e16; }
+
+        /* Contenedor Principal */
+        main {
+            margin-left: 250px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        section { display: none; margin-bottom: 50px; line-height: 1.6; }
+        section:target { display: block; } /* Muestra la sección según el ID en la URL */
+        #inicio { display: block; } /* Mostrar inicio por defecto */
+
+        h1 { color: #5d4037; border-bottom: 2px solid #d4a373; padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { margin-top: 20px; color: #8d6e63; }
+
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
+        
+        /* Simulación de Mapa */
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #e0d5c1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #8d6e63;
+            border-radius: 10px;
+        }
+
+        .grid-sitios { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .sitio-item { background: #8d6e63; color: white; padding: 15px; border-radius: 5px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Menú</h2>
+        <a href="index.html">Inicio</a>
+        <a href="historia.html">Historia</a>
+        <a href="mapa.html">Mapa (Pinos, Zacatecas)</a>
+        <a href="sitios.html">Sitios Arqueológicos</a>
+        <a href="pigmentos.html">Pigmentos</a>
+        <a href="pinturas.html">Pinturas Rupestres (Experimentales)</a>
+        
+    </nav>
+
+    <main>
+        <section id="inicio">
+            <h1>Historia</h1>
+
+             <div class="info-item" align="justify"><strong></strong> Las pinturas rupestres se considera que surgieron hace aproximadamente unos 40000,
+                 en distintas partes del mundo, durante el Paleolítico. En México aparecen miles de años después, principalmente en regiones del norte, noroeste, donde grupos nómadas dejaron de su vida y creencias.
+
+<dl>
+<dt><strong>Algunos de los sitios más importantes en México son:</strong>
+<dd><li type="disc">Sierra de San Francisco</li></dd>
+<dd><li type="disc">Cueva de la Pintada</li></dd>
+<dd><li type="disc">Cuevas de Mitla</li></dd>
+</dl>
+<dl>
+Siendo realizadas por culturas prehistóricas (como grupos cazadores-recolectores), teniendo un fuerte sentido rural, simbólica y espiritual, además de representar escenas como caza, animales y figuras humanas.<br>
+
+<strong> Algunos rasgos destacados de las pinturas rupestres en México son:</strong>
+<dd><li type="disc">Destacan las figuras humanas estilizadas y escenas grupales</li></dd>
+<dd><li type="disc">Representaciones de animales como venados, borregos cimarrones y peces.</li></dd>
+<dd><li type="disc">Uso de gran escala en algunos murales (ejemplo de esto lo tenemos en Baja California)</li></dd>
+ <dd><li type="disc">Tenemos escenas completas, no solo figuras aisladas considerando estas como composiciones narrativas.</li></dd>
+ <dd><li type="disc">Uso del relieve natural de las rocas para dar volumen a las pinturas, aunque más utilizado en peto grabados o petroglifos.</li></dd></dl>
+<dl>
+<strong>Puntos importantes para su estudio</strong>
+<dd><li type="disc">Durante el siglo XX en México exploradores y arqueólogos comienzan a registrar sitios en el norte del país.</li></dd>
+<dd><li type="disc">En reconocimiento del legado cultural de México en diciembre de 1993 la UNESCO declara la Sierra de San Francisco como Patrimonio de la Humanidad.</li></dd>
+<dd><li type="disc">A partir de esto se crea una conciencia sobre la investigación científica de estos temas y se realizan estudios sobre pigmentos, datación y significado cultural.</li></dd>
+<dd><li type="disc">Basándonos en la interpretación simbólica de los motivos encontramos que se relacionan con rituales, cosmovisión y organización social, esto basado en la investigación 
+    científica previamente realizada.</li></dd>
+<dd><li type="disc">Actualmente encontramos programas para evitar el deterioro ya sea por turismo, ambiental y actividad humana.</li></dd>
+</dl>
+</div>
+        </section>
+
+        
+
+        
+</body>
+</html>
