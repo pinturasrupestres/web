@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte Rupestre - Exploración</title>
+    <style>
+        /* Estilos Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { display: flex; flex-direction: row; background-color: #f4f1ea; color: #333; min-height: 100vh; }
+
+        /* Menú Lateral (Escritorio) */
+        nav {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c1e16;
+            color: white;
+            position: fixed;
+            padding-top: 20px;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        nav h2 { text-align: center; margin-bottom: 30px; color: #d4a373; font-size: 1.5rem; }
+
+        /* Contenedor de enlaces para control flex/grid */
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav a {
+            display: block;
+            padding: 15px 25px;
+            color: #f0e6d2;
+            text-decoration: none;
+            transition: 0.3s;
+            border-bottom: 1px solid #3d2b1f;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover { background-color: #de5119; color: #2c1e16; }
+
+        /* Contenedor Principal */
+        main {
+            margin-left: 250px;
+            padding: 40px;
+            width: 100%;
+            transition: margin 0.3s ease;
+        }
+
+        h1 { color: #5d4037; border-bottom: 2px solid #d4a373; padding-bottom: 10px; margin-bottom: 20px; }
+
+        /* Álbum de Fotos Responsivo */
+        .album-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .foto {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 250px;
+            
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .foto img:hover { transform: scale(1.05); }
+
+        /* --- RESPONSIVIDAD (Móvil) --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative; /* Ya no es fijo a la izquierda */
+                padding: 15px 10px;
+            }
+
+            nav h2 { margin-bottom: 15px; font-size: 1.2rem; }
+
+            /* Grid de 3 arriba y 2 abajo */
+            .nav-links {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+                gap: 5px;
+            }
+
+            /* Los últimos 2 botones ocuparán espacio para que parezcan centrados o alineados */
+            nav a {
+                padding: 10px 5px;
+                text-align: center;
+                border: 1px solid #3d2b1f;
+                font-size: 0.75rem;
+                border-radius: 4px;
+            }
+
+            /* Hacer que los últimos dos elementos se ajusten (opcional: puedes dejarlos en grid de 3) */
+            nav a:nth-child(4), nav a:nth-child(5), nav a:nth-child(6) {
+                /* Esto los mantiene en el flujo del grid */
+            }
+
+            main {
+                margin-left: 0; /* Quitamos el margen lateral */
+                padding: 20px;
+            }
+
+            .album-container {
+                grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Menú</h2>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="mapa.html">Mapa</a>
+            <a href="sitios.html">Sitios</a>
+            <a href="pigmentos.html">Pigmentos</a>
+            <a href="pinturas.html">Pinturas rupestres (Experimentales)</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Nuestros trabajos rupestres</h1>
+        
+        <div class="album-container">
+            
+   <div class="album-container">
+  <div class="foto">
+    <img src="img1290.jpg" alt="Descripción 1">
+  </div>
+  <div class="foto">
+    <img src="img1293.jpg" alt="Descripción 2">
+  </div>
+  <div class="foto">
+    <img src="img1294.jpg" alt="Descripción 3">
+  </div>
+  <div class="foto">
+    <img src="img1281.jpg" alt="Descripción 4">
+  </div>
+  <div class="foto">
+    <img src="img1282.jpg" alt="Descripción 5">
+  </div>
+  <div class="foto">
+    <img src="img1283.jpg" alt="Descripción 6">
+  </div>
+   <div class="foto">
+    <img src="img1270.jpg" alt="Descripción 1">
+  </div>
+  <div class="foto">
+    <img src="img1279.jpg" alt="Descripción 2">
+  </div>
+  <div class="foto">
+    <img src="img1287.jpg" alt="Descripción 3">
+  </div>
+  <div class="foto">
+    <img src="img1303.jpg" alt="Descripción 4">
+  </div>
+  <div class="foto">
+    <img src="img1319.jpg" alt="Descripción 5">
+  </div>
+  <div class="foto">
+    <img src="img1332.jpg" alt="Descripción 6">
+  </div>
+  <div class="foto">
+    <img src="img1321.jpg" alt="Descripción 4">
+  </div>
+  <div class="foto">
+    <img src="img1322.jpg" alt="Descripción 5">
+  </div>
+  <div class="foto">
+    <img src="img1320.jpg" alt="Descripción 6">
+  </div>
+  <div class="foto">
+    <img src="img1324.jpg" alt="Descripción 4">
+  </div>
+  <div class="foto">
+    <img src="img1325.jpg" alt="Descripción 5">
+  </div>
+  <div class="foto">
+    <img src="img1326.jpg" alt="Descripción 6">
+  </div>
+  <div class="foto">
+    <img src="img1327.jpg" alt="Descripción 4">
+  </div>
+  <div class="foto">
+    <img src="img1329.jpg" alt="Descripción 5">
+  </div>
+  <div class="foto">
+    <img src="img1317.jpg" alt="Descripción 6">
+  </div>
+</div>
+
+        </div>
+    </main>
+
+</body>
+</html>
