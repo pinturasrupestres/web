@@ -1,0 +1,14 @@
+img {
+margin: auto;
+cursor: pointer;
+width: 200px;
+height: 200px;
+transition: opacity 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1,1);
+  transition: 3s;
+  opacity: 0.7;
+}
+ 
